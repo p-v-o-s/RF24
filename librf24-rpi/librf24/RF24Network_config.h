@@ -11,21 +11,21 @@
 #define __RF24_CONFIG_H__
 
 #if ARDUINO < 100
-#include <WProgram.h>
+//#include <WProgram.h>
 #else
-#include <Arduino.h>
+//#include <Arduino.h>
 #endif
 
 #include <stddef.h>
 
 // Stuff that is normally provided by Arduino
-#ifndef ARDUINO
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
-extern HardwareSPI SPI;
-#define _BV(x) (1<<(x))
-#endif
+//#ifndef ARDUINO
+//#include <stdint.h>
+//#include <stdio.h>
+//#include <string.h>
+//extern HardwareSPI SPI;
+//#define _BV(x) (1<<(x))
+//#endif
 
 #undef SERIAL_DEBUG
 #ifdef SERIAL_DEBUG
@@ -43,11 +43,11 @@ extern HardwareSPI SPI;
 #endif
 
 // Progmem is Arduino-specific
-#ifdef ARDUINO
-#include <avr/pgmspace.h>
-#define PRIPSTR "%S"
-#else
-typedef char const prog_char;
+//#ifdef ARDUINO
+//#include <avr/pgmspace.h>
+//#define PRIPSTR "%S"
+//#else
+//typedef char const prog_char;
 typedef uint16_t prog_uint16_t;
 #define PSTR(x) (x)
 #define printf_P printf
@@ -55,7 +55,17 @@ typedef uint16_t prog_uint16_t;
 #define PROGMEM
 #define pgm_read_word(p) (*(p)) 
 #define PRIPSTR "%s"
-#endif
+
+// Function, constant map as a result of migrating from Arduino
+#define LOW GPIO::OUTPUT_LOW
+#define HIGH GPIO::OUTPUT_HIGH
+#define INPUT GPIO::DIRECTION_IN
+#define OUTPUT GPIO::DIRECTION_OUT
+#define digitalWrite(pin, value) GPIO::write(pin, value)
+#define pinMode(pin, direction) GPIO::open(pin, direction)
+#define delay(milisec) __msleep(milisec)
+#define delayMicroseconds(usec) __usleep(usec)
+//#endif
 
 #endif // __RF24_CONFIG_H__
 // vim:ai:cin:sts=2 sw=2 ft=cpp
