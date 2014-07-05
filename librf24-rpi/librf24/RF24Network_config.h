@@ -10,13 +10,12 @@
 #ifndef __RF24_CONFIG_H__
 #define __RF24_CONFIG_H__
 
-#if ARDUINO < 100
+//#if ARDUINO < 100
 //#include <WProgram.h>
-#else
+//#else
 //#include <Arduino.h>
 //#warning "Arduino disabled"
 #include "spi.h"
-#include "gpio.h"
 #include "compatibility.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -26,7 +25,7 @@
 
 #define pgm_read_word(p) (*(p))
 #define pgm_read_byte(p) (*(p))
-#endif
+//#endif
 
 #include <stddef.h>
 
