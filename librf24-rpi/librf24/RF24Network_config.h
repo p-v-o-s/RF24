@@ -14,6 +14,18 @@
 //#include <WProgram.h>
 #else
 //#include <Arduino.h>
+//#warning "Arduino disabled"
+#include "spi.h"
+#include "gpio.h"
+#include "compatibility.h"
+#include <stdint.h>
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+#include <sys/time.h>
+
+#define pgm_read_word(p) (*(p))
+#define pgm_read_byte(p) (*(p))
 #endif
 
 #include <stddef.h>
