@@ -18,7 +18,8 @@
 #include <SPI.h>
 
 // nRF24L01(+) radio attached using Getting Started board 
-RF24 radio(9,10);
+//RF24 radio(9,10);
+RF24 radio("/dev/spidev0.0",8000000 , 25);  //spi device, speed and CSN,only CSN is NEEDED in RPI
 
 // Network uses that radio
 RF24Network network(radio);
@@ -64,4 +65,14 @@ void loop(void)
     Serial.println(payload.ms);
   }
 }
+
+int main(int argc, char** argv)
+{
+  setup();
+  while(1)
+    loop();
+  return 0;
+}
+
+
 // vim:ai:cin:sts=2 sw=2 ft=cpp
