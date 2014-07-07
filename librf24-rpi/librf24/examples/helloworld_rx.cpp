@@ -60,9 +60,9 @@ void loop(void)
     payload_t payload;
     network.read(header,&payload,sizeof(payload));
     printf("Received packet #");
-    printf("%d",payload.counter);
+    printf("%d",(int) payload.counter);
     printf(" at ");
-    printf("%d\n" % payload.ms);
+    printf("%d\n", (int) payload.ms);
   }
 }
 

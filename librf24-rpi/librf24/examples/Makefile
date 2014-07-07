@@ -26,7 +26,7 @@ all: ${PROGRAMS}
 
 ${PROGRAMS}: ${SOURCES}
 #	g++ ${CCFLAGS} -Wall -L../librf24/  -lrf24 $@.cpp -o $@
-	g++ ${CCFLAGS} -L../librf24/  -lrf24 $@.cpp -o $@
+	g++ ${CCFLAGS} -L../librf24/ -L../librf24network  -lrf24 -lrf24network $@.cpp -o $@
 
 clean:
 	rm -rf $(PROGRAMS)
