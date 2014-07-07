@@ -39,8 +39,9 @@ struct payload_t
 
 void setup(void)
 {
-  Serial.begin(57600);
-  Serial.println("RF24Network/examples/helloworld_rx/");
+  //Serial.begin(57600);
+  //Serial.println("RF24Network/examples/helloworld_rx/");
+  printf("RF24Network/examples/helloworld_rx/");
  
   SPI.begin();
   radio.begin();
@@ -59,10 +60,10 @@ void loop(void)
     RF24NetworkHeader header;
     payload_t payload;
     network.read(header,&payload,sizeof(payload));
-    Serial.print("Received packet #");
-    Serial.print(payload.counter);
-    Serial.print(" at ");
-    Serial.println(payload.ms);
+    printf("Received packet #");
+    printf("%d",payload.counter);
+    printf(" at ");
+    printf("%d\n" % payload.ms);
   }
 }
 
