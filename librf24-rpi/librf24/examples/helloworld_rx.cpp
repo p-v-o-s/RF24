@@ -15,7 +15,6 @@
 
 #include <RF24Network.h>
 #include <RF24.h>
-#include <SPI.h>
 
 // nRF24L01(+) radio attached using Getting Started board 
 //RF24 radio(9,10);
@@ -23,6 +22,7 @@ RF24 radio("/dev/spidev0.0",8000000 , 25);  //spi device, speed and CSN,only CSN
 
 // Network uses that radio
 RF24Network network(radio);
+
 
 // Address of our node
 const uint16_t this_node = 0;
@@ -43,7 +43,6 @@ void setup(void)
   //Serial.println("RF24Network/examples/helloworld_rx/");
   printf("RF24Network/examples/helloworld_rx/");
  
-  SPI.begin();
   radio.begin();
   network.begin(/*channel*/ 90, /*node address*/ this_node);
 }
